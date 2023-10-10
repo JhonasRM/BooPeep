@@ -6,6 +6,9 @@ function Login_Input() {
 
             <h3>Insira sua Senha</h3>
             <input type="text" name="caixadesenha" id='passwordbox' value=''/>
+
+            <br /><br />
+            <a href="/"><input type="submit" value="Entrar" /></a>
         </div>
     )
 }

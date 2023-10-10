@@ -20,7 +20,7 @@ function Cadastro_Input() {
                 <option value="ADM">Administração</option>
             </select>
             <br /><br />
-            <input type="button" value="Finalizar Cadastro" />
+            <a href="/"><input type="submit" value="Finalizar Cadastro" /></a>
         </div>
     )
 }

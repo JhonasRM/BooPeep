@@ -5,6 +5,7 @@ import './index.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import Login_Main from './component/Login/Login_Main.tsx'
 import Cadastro_Main from './component/Cadastro/Cadastro_Main.tsx'
+import Login_Recovery from './component/Login/Login_Recovery.tsx'
 
 const router = createBrowserRouter([
     {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
     {
       path: "cadastro",
       element: <Cadastro_Main />
+    },
+    {
+      path: "recovery",
+      element: <Login_Recovery />
     }
 ])
 
