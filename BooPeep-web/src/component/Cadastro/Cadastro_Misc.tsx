@@ -1,6 +1,8 @@
 function Cadastro_Misc() {
     return(
-        "Rasengan"
+        <div>
+            <p>Já possui uma conta? <a href="login">Faça login aqui</a></p>
+        </div>
     )
 }
 
