@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
-import Login_Main from './component/Login/Login_Main.tsx'
-import Cadastro_Main from './component/Cadastro/Cadastro_Main.tsx'
-import Login_Recovery from './component/Login/Login_Recovery.tsx'
+import Login_Main from './screens/Login/Login_Main.tsx'
+import Login_Recovery from './screens/Login/Login_Recovery.tsx'
+import Homepage from './screens/Homepage/Homepage.tsx'
+import Signup_Main from './screens/Signup/Signup_Main.tsx'
 
 const router = createBrowserRouter([
     {
@@ -17,12 +18,16 @@ const router = createBrowserRouter([
       element: <Login_Main />
     },
     {
-      path: "cadastro",
-      element: <Cadastro_Main />
+      path: "signup",
+      element: <Signup_Main />
     },
     {
       path: "recovery",
       element: <Login_Recovery />
+    },
+    {
+      path: "home",
+      element: <Homepage />
     }
 ])
 

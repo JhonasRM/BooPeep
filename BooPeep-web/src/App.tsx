@@ -1,14 +1,10 @@
 import './App.css'
-import { Link } from "react-router-dom";
+import Login_Main from './screens/Login/Login_Main'
 
 
 function App() {
   return (
-    <div>
-      <h1>Página Inicial</h1>
-      <Link to='login'>TelaLogin</Link>
-      <Link to='cadastro'>TelaCadastro</Link>
-    </div>
+    <Login_Main />
   )
 }
 

@@ -8,7 +8,7 @@ function Login_Input() {
             <input type="text" name="caixadesenha" id='passwordbox' value=''/>
 
             <br /><br />
-            <a href="/"><input type="submit" value="Entrar" /></a>
+            <a href="home"><input type="submit" value="Entrar" /></a>
         </div>
     )
 }

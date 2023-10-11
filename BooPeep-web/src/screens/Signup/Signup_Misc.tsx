@@ -1,4 +1,4 @@
-function Cadastro_Misc() {
+function Signup_Misc() {
     return(
         <div>
             <p>Já possui uma conta? <a href="login">Faça login aqui</a></p>
@@ -6,4 +6,4 @@ function Cadastro_Misc() {
     )
 }
 
-export default Cadastro_Misc
+export default Signup_Misc

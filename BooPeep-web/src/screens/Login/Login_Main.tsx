@@ -1,5 +1,5 @@
-import Login_Input from "./Login_Input"
-import Login_Misc from "./Login_Misc"
+import Login_Input from "./Login_Input.tsx"
+import Login_Misc from "./Login_Misc.tsx"
 import './Login.css'
 import './Login.ts'
 

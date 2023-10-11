@@ -1,4 +1,4 @@
-function Cadastro_Input() {
+function Signup_Input() {
     return(
         <div>
             <h3>Insira seu Nome</h3>
@@ -19,10 +19,11 @@ function Cadastro_Input() {
                 <option value="JUR">Juridico</option>
                 <option value="ADM">Administração</option>
             </select>
+
             <br /><br />
-            <a href="/"><input type="submit" value="Finalizar Cadastro" /></a>
+            <a href="home"><input type="submit" value="Finalizar Cadastro" /></a>
         </div>
     )
 }
 
-export default Cadastro_Input
+export default Signup_Input
