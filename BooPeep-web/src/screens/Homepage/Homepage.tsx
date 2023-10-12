@@ -1,12 +1,14 @@
 import './Homepage.css'
+import Navbar from "../../component/Navbar/Navbar.tsx";
 
 
 function Homepage() {
   return (
     <div>
+      <Navbar />
+      
       <a href="login">Login</a>
       <a href="signup">Signup</a>
-      <h1>Página Inicial</h1>
       
     </div>
   )
