@@ -1,15 +1,15 @@
 function Login_Input() {
     return(
-        <div>
-            <h3>Insira seu Email ou Nome de Usuário</h3>
-            <input type="text" name="caixadenomeemail" id='nameemailbox' value=''/>
-
-            <h3>Insira sua Senha</h3>
-            <input type="text" name="caixadesenha" id='passwordbox' value=''/>
-
-            <br /><br />
+        <form>
+            <h2>Entre com seu Usuário</h2>
+            <label>E-mail</label><br/>
+            <input type="text" name="caixadenomeemail" id='nameemailbox'  placeholder="e-mail:"/>
+            <br/>
+            <label>Senha</label><br/>
+            <input type="password" name="caixadesenha" id='passwordbox'  placeholder="senha:"/>
+            <br/>
             <a href="home"><input type="submit" value="Entrar" /></a>
-        </div>
+        </form>
     )
 }
 
