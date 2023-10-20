@@ -1,11 +1,10 @@
 import './Homepage.css'
-import Navbar from "../../component/Navbar/Navbar.tsx";
-
+import Sidebar from "../../component/Sidebar/Sidebar.tsx";
 
 function Homepage() {
   return (
     <div>
-      <Navbar />
+      <Sidebar />
       
       <a href="login">Login</a>
       <a href="signup">Signup</a>
