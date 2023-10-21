@@ -1,5 +1,6 @@
 import './Homepage.css'
-import Sidebar from "../../component/Sidebar/Sidebar.tsx";
+import Sidebar from "../../component/Sidebar/Sidebar.jsx";
+
 
 function Homepage() {
   return (
