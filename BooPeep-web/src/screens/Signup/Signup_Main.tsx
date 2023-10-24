@@ -1,4 +1,39 @@
+import { useState } from "react"
+const axios = require('axios')
+
 function Signup_Main() {
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirm, setConfirm] = useState('')
+    const [phone, setPhone] = useState('')
+    const [course, setCourse] = useState('')
+    const [error, setError] = useState('')
+    const [user, setUser] = useState(null)
+
+    const handleSignup = async (e: React.FormEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        if(password === confirm){
+        // console.log(email, password)
+        setConfirm('')
+        try{
+        const response = await axios.post('http://localhost:4000/signup', JSON.stringify({name, email, password, phone, course}),
+        {
+            headers: {'Content-Type':'application/json'}
+        })
+        setUser(response.data)
+    } catch (err){
+        if(error){
+            setError('Erro ao acessar o servidor')
+        } else if (error.response.status === 401){
+            setError('Você já possui um usuário cadastrado!')
+        }
+    }
+    }
+    else if(password !== confirm){
+        setConfirm('Senhas não conhecidem')
+    }
+    }
     return(
         <section className='bg-purple-200'>
 
@@ -29,7 +64,7 @@ function Signup_Main() {
                             text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 
                             block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
                             dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                             /*required=""*/ />
+                            required onChange={(e) => setName} />
                         </div>
 
                         {/* EMAIL */}
@@ -40,7 +75,7 @@ function Signup_Main() {
                             text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 
                             block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
                             dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                             /*required=""*/ />
+                            required onChange={(e) => setEmail}/>
                         </div>
 
                         {/* SENHA */}
@@ -51,18 +86,19 @@ function Signup_Main() {
                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
                                 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 
                                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
-                                dark:focus:border-blue-500" /*required=""*/ />
+                                dark:focus:border-blue-500" required onChange={(e) => setPassword}/>
                         </div>                        
                         
                         {/* CONFIRMAR SENHA */}
                         <div>
+                            <p>{confirm}</p>
                             <label htmlFor="confirm-password" className="block mb-2 text-lm font-medium text-gray-900 
                             dark:text-white text-center">Insira de novo a sua Senha</label>
                             <input type="confirm-password" name="confirmarsenha" id="confirmbox" 
                             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
                             focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 
                             dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
-                            dark:focus:border-blue-500" /*required=""*/ />
+                            dark:focus:border-blue-500" required onChange={(e) => setConfirm}/>
                         </div>
 
                         {/* TELEFONE */}
@@ -73,7 +109,7 @@ function Signup_Main() {
                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
                                 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 
                                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
-                                dark:focus:border-blue-500" /*required=""*/ />
+                                dark:focus:border-blue-500" required onChange={(e) => setPhone}/>
                         </div>        
 
                         {/* CURSO */}
@@ -81,7 +117,7 @@ function Signup_Main() {
                             <label htmlFor="course" className="block mb-2 text-lm font-medium text-gray-900 
                             dark:text-white text-center">Selecione seu Curso</label>
 
-                            <select id="course" className="bg-purple-500 border text-white text-sm rounded-lg focus:ring-purple-400 focus:border-purple-400 block w-full p-2.5 dark:bg-purple-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-400 dark:focus:border-purple-400">
+                            <select id="course" className="bg-purple-500 border text-white text-sm rounded-lg focus:ring-purple-400 focus:border-purple-400 block w-full p-2.5 dark:bg-purple-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-400 dark:focus:border-purple-400" required onChange={(e) => setCourse}>
                                 <option selected>Selecione:</option>
                                 <option value="ADM">Administração</option>
                                 <option value="DS">Desenvolvimento de Sistemas</option>
@@ -92,7 +128,7 @@ function Signup_Main() {
                         <a href="home" type="submit" className="w-full text-black hover:bg-purple-500 
                         focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 
                         py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 
-                        dark:focus:ring-primary-800 bg-purple-400 mt-3"> Finalizar Cadastro </a>
+                        dark:focus:ring-primary-800 bg-purple-400 mt-3" onChange={(e) => handleSignup}> Finalizar Cadastro </a>
                         </div>
 
                         <div>
