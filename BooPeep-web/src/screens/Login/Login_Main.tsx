@@ -13,14 +13,20 @@ const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
     console.log(email, password)
     
     try{
-    const response = await axios.post('http://localhost:4000/login', JSON.stringify({ email, password}),
+        const response = await axios.post('https://localhost:4000/login', JSON.stringify({ email, password}),
     {
-        headers: {'Content-Type':'application/json'}
+        headers : {'Content-Type':'application/json'}
     })
-    setUser(response.data)
-    if(response.data ===401){
-      setError('Credenciais Inválidas')
+    // setUser(response.data)
+    console.log(response.data)
+    if(response.status === 200){
+        console.log('Usuário logado')
+
     }
+    if(response.status === 401){
+        console.log('Credenciais Inválidas')
+      }
+    
 } catch (er){
     if(error){
         setError('Erro ao acessar o servidor')
@@ -30,8 +36,7 @@ const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
 
 
 return (
-    // <div>
-    // {user === null? (
+
     <div>
     <section className='bg-indigo-200 h-screen'>
 
@@ -91,14 +96,6 @@ return (
         </div>
     </section>
     </div>
-    // )}
-    // </div>
-    // ) : (
-    //     <div>
-    //         <h2>Olá, {user.name}</h2>
-    //         <input type="button" value="" onClick={(e) => handleLogout(e)}/>
-    //     </div>
-    // )}
     
 )
 }
