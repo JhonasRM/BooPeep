@@ -33,7 +33,7 @@ return (
     // <div>
     // {user === null? (
     <div>
-    <section className='bg-purple-200'>
+    <section className='bg-indigo-200 h-screen'>
 
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             
@@ -44,7 +44,7 @@ return (
             </a>
 
             <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 
-            dark:border-gray-700 bg-orange-300">
+            dark:border-gray-700 bg-purple-300 border-solid border-2 border-purple-400">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     
                     <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl 
@@ -73,15 +73,15 @@ return (
                             dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                             dark:focus:border-blue-500" required  onChange={(e) => setPassword(e.target.value)}/>
                         </div>
-                        <a href="home" type="submit" className="w-full text-black hover:bg-purple-500 
+                        <a href="home" type="submit" className="w-full text-black hover:bg-purple-600 
                         focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 
                         py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 
-                        dark:focus:ring-primary-800 bg-purple-400 mt-3" onClick={(e) => handleLogin(e)}> Entrar </a>
+                        dark:focus:ring-primary-800 bg-purple-500 mt-3" onClick={(e) => handleLogin(e)}> Entrar </a>
         
                         <p className="text-sm font-light text-black dark:text-gray-400">
-                            Não possui uma conta? <a href="signup" className="font-medium hover:underline dark:text-primary-500 text-purple-500 hover:text-purple-700">Cadastre-se Aqui</a>
+                            Não possui uma conta? <a href="signup" className="font-medium hover:underline dark:text-primary-500 text-purple-500 hover:text-purple-600">Cadastre-se Aqui</a>
                             <br />
-                            Esqueceu sua senha? <a href="recovery" className="font-medium hover:underline dark:text-primary-500 text-purple-500 hover:text-purple-700">Redefine ela aqui</a>
+                            Esqueceu sua senha? <a href="recovery" className="font-medium hover:underline dark:text-primary-500 text-purple-500 hover:text-purple-600">Redefine ela aqui</a>
                         </p>
                         
 

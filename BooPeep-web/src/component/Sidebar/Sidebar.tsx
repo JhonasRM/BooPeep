@@ -19,39 +19,39 @@ function Sidebar() {
       </a>
       <ul className="space-y-2 font-medium">
          <li>
-            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-purple-200 dark:hover:bg-gray-700 group">
             <img src='src\assets\imagens\icons8-feed-de-atividade-26.png' width="26px" height="26px"/>                
                <span className="ml-3">Postagens</span>
             </a>
          </li>
          
          <li>
-            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-purple-200 dark:hover:bg-gray-700 group">
                <img src='src\assets\imagens\icons8-bate-papo-32.png' width="26px" height="26px"/>                
                <span className="flex-1 ml-3 whitespace-nowrap">Chat</span>
                <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
             </a>
          </li>
          <li>
-            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-purple-200 dark:hover:bg-gray-700 group">
                <img src='src\assets\imagens\icons8-mapa-26.png' width="26px" height="26px"/>                
                <span className="flex-1 ml-3 whitespace-nowrap">Mapa</span>
             </a>
          </li>
          <li>
-            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-purple-200 dark:hover:bg-gray-700 group">
                <img src='src\assets\imagens\icons8-histórico-50.png' width="26px" height="26px"/>
                <span className="flex-1 ml-3 whitespace-nowrap">Historico</span>
             </a>
          </li>
          <li>
-            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-purple-200 dark:hover:bg-gray-700 group">
                <img src='src\assets\imagens\icons8-usuário-26 (1).png' width="26px" height="26px"/>                
                <span className="flex-1 ml-3 whitespace-nowrap">Usuário</span>
             </a>
          </li>
          <li>
-            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-purple-200 dark:hover:bg-gray-700 group">
                <img src='src\assets\imagens\icons8-sobre-26.png' width="26px" height="26px"/>                
                <span className="flex-1 ml-3 whitespace-nowrap">Sobre</span>
             </a>
@@ -65,7 +65,7 @@ function Sidebar() {
 </aside>
 
 <div className="p-4 sm:ml-64">
-   <div className="p-4 border-4 border-purple-200 border-solid rounded-lg dark:border-gray-700 bg-purple-300">
+   <div className="p-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300">
       <div className="grid grid-cols-3 gap-4 mb-4">
       </div>
    </div>

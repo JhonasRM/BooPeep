@@ -35,7 +35,7 @@ function Signup_Main() {
     }
     }
     return(
-        <section className='bg-purple-200'>
+        <section className='bg-indigo-200 h-screen'>
 
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto">
             
@@ -46,7 +46,7 @@ function Signup_Main() {
             </a>
 
             <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 
-            dark:border-gray-700 bg-orange-300">
+            dark:border-gray-700 bg-purple-300 border-solid border-2 border-purple-400">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     
                     <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl 
@@ -113,27 +113,29 @@ function Signup_Main() {
                         </div>        
 
                         {/* CURSO */}
-                        <div>        
+                        {/*<div>        
                             <label htmlFor="course" className="block mb-2 text-lm font-medium text-gray-900 
                             dark:text-white text-center">Selecione seu Curso</label>
 
-                            <select id="course" className="bg-purple-500 border text-white text-sm rounded-lg focus:ring-purple-400 focus:border-purple-400 block w-full p-2.5 dark:bg-purple-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-400 dark:focus:border-purple-400" required onChange={(e) => setCourse}>
+                            <select id="course" className="bg-purple-400 border text-white text-sm rounded-lg focus:ring-purple-400 focus:border-purple-400 block w-full 
+                            p-2.5 dark:bg-purple-400 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-400 
+                            dark:focus:border-purple-400" required onChange={(e) => setCourse}>
                                 <option selected>Selecione:</option>
                                 <option value="ADM">Administração</option>
                                 <option value="DS">Desenvolvimento de Sistemas</option>
                                 <option value="JUR">Juridico</option>
                                 <option value="LOG">Logistica</option>
-                            </select>
+            </select> */}
                                             
-                        <a href="home" type="submit" className="w-full text-black hover:bg-purple-500 
+                        <a href="home" type="submit" className="w-full text-black hover:bg-purple-600 
                         focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 
                         py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 
-                        dark:focus:ring-primary-800 bg-purple-400 mt-3" onChange={(e) => handleSignup}> Finalizar Cadastro </a>
-                        </div>
+                        dark:focus:ring-primary-800 bg-purple-500 mt-3" onChange={(e) => handleSignup}> Finalizar Cadastro </a>
+                        {/*</div>*/}
 
                         <div>
                         <p className="text-sm font-light text-black dark:text-gray-400">
-                            Já possui uma conta? <a href="login" className="font-medium hover:underline dark:text-primary-500 text-purple-500 hover:text-purple-700">Faça login aqui</a>                            
+                            Já possui uma conta? <a href="login" className="font-medium hover:underline dark:text-primary-500 text-purple-500 hover:text-purple-600">Faça login aqui</a>                            
                         </p>
                         </div>        
 

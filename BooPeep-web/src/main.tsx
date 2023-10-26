@@ -4,7 +4,7 @@ import App from './App.tsx'
 import './index.css'
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import Login_Main from './screens/Login/Login_Main.tsx'
-import Login_Recovery from './screens/Login/Login_Recovery.tsx'
+import Login_Recovery from './screens/Recovery/Login_Recovery.tsx'
 import Homepage from './screens/Homepage/Homepage.tsx'
 import Signup_Main from './screens/Signup/Signup_Main.jsx'
 
