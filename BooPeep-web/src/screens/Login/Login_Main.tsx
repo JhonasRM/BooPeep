@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function Login_Main() {
@@ -7,30 +8,33 @@ const [password, setPassword] = useState('')
 const [error, setError] = useState('')
 const [user, setUser] = useState(null)
 
+function redirecionar(){
+    
+}
+
 const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     console.log(email, password)
     
     try{
-        const response = await axios.post('https://localhost:4000/login', JSON.stringify({ email, password}),
+        const resp = await axios.post('http://localhost:4000/login', JSON.stringify({ email, password}),
     {
         headers : {'Content-Type':'application/json'}
     })
-    // setUser(response.data)
-    console.log(response.data)
-    if(response.status === 200){
-        console.log('Usuário logado')
+    setUser(resp.data)
+    console.log(resp.data)
+    if(resp.status === 200){
+        redirecionar()
 
     }
-    if(response.status === 401){
-        console.log('Credenciais Inválidas')
-      }
     
-} catch (er){
+} catch (error){
     if(error){
-        setError('Erro ao acessar o servidor')
-    } 
+        setError('Erro ao acessar o servidor ')
+    } else if(resp.status === 401){
+        setError('Credenciais Inválidas') 
+      }
 }
 }
 
@@ -58,7 +62,7 @@ return (
                     </h1>
                     
                     <form className="space-y-4 md:space-y-6" action="#">
-                        
+                        <p>{error}</p>
                         <div>
                             <label htmlFor="email" className="block mb-2 text-lm font-medium text-gray-900 
                             dark:text-white text-center">Insira seu Email</label>
@@ -99,5 +103,4 @@ return (
     
 )
 }
-
 export default Login_Main
