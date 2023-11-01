@@ -8,8 +8,8 @@ const [password, setPassword] = useState('')
 const [error, setError] = useState('')
 const [user, setUser] = useState(null)
 
-function redirecionar(pag){
-    window.location.href = pag
+function redirecionar(){
+    window.location.href = ('/home')
 }
 
 const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
@@ -18,11 +18,11 @@ const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
     console.log(email, password)
     
     try{
-        const resp = await axios.get('http://localhost:4000/api/user:' + email)
+        const resp = await axios.get('http://localhost:4000/api/user')
     setUser(resp.data)
     console.log(resp.data)
     if(resp.status === 200){
-        redirecionar('/home')
+        redirecionar()
     } else  if(resp.status === 404){
         setError('Credenciais Inválidas') 
       }

@@ -17,7 +17,7 @@ function Signup_Main() {
         // console.log(email, password)
         setConfirm('')
         try{
-        const response = await axios.post('http://localhost:4000/signup', JSON.stringify({name, email, password, phone, course}),
+        const response = await axios.post('http://localhost:4000/db/user', JSON.stringify({id, name, email, password, phone, course}),
         {
             headers: {'Content-Type':'application/json'}
         })
