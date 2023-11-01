@@ -8,8 +8,8 @@ const [password, setPassword] = useState('')
 const [error, setError] = useState('')
 const [user, setUser] = useState(null)
 
-function redirecionar(){
-    
+function redirecionar(pag){
+    window.location.href = pag
 }
 
 const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
@@ -18,23 +18,18 @@ const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
     console.log(email, password)
     
     try{
-        const resp = await axios.post('http://localhost:4000/login', JSON.stringify({ email, password}),
-    {
-        headers : {'Content-Type':'application/json'}
-    })
+        const resp = await axios.get('http://localhost:4000/api/user:' + email)
     setUser(resp.data)
     console.log(resp.data)
     if(resp.status === 200){
-        redirecionar()
-
-    }
-    
+        redirecionar('/home')
+    } else  if(resp.status === 404){
+        setError('Credenciais Inválidas') 
+      }
 } catch (error){
     if(error){
         setError('Erro ao acessar o servidor ')
-    } else if(resp.status === 401){
-        setError('Credenciais Inválidas') 
-      }
+    }
 }
 }
 
