@@ -7,6 +7,7 @@ export default {
     extend: { //Aqui se cria novas classes no Tailwind
       margin: { //Aqui se cria novos valores para margems
         '68': '17rem',
+        '110': '34rem',
         '0-auto-imp': '0 auto !important'
       },
     }
