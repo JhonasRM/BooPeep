@@ -7,6 +7,7 @@ import Login_Main from './screens/Login/Login_Main.tsx'
 import Login_Recovery from './screens/Recovery/Login_Recovery.tsx'
 import Homepage from './screens/Homepage/Homepage.tsx'
 import Signup_Main from './screens/Signup/Signup_Main.jsx'
+import Postagens from './screens/Postagens/Postagens.tsx'
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
     {
       path: "home",
       element: <Homepage />
+    },
+    {
+      path: "postagens",
+      element: <Postagens />
     }
 ])
 
