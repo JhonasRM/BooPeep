@@ -8,6 +8,8 @@ import Login_Recovery from './screens/Recovery/Login_Recovery.tsx'
 import Homepage from './screens/Homepage/Homepage.tsx'
 import Signup_Main from './screens/Signup/Signup_Main.jsx'
 import Postagens from './screens/Postagens/Postagens.tsx'
+import Sobre from "./screens/Sobre/Sobre.tsx";
+import CreatePost from "./component/CreatePost/CreatePost.tsx";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
     {
       path: "postagens",
       element: <Postagens />
+    },
+    {
+      path: "sobre",
+      element: <Sobre />
+    },
+    {
+      path: "test",
+      element: <CreatePost />
     }
 ])
 
