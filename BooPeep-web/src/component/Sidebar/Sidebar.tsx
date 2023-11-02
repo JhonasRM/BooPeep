@@ -25,41 +25,41 @@ function Sidebar() {
             </a>
          </li>
          {/* CHAT */}
-         {/* <li>
+         {<li>
             <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-purple-200 dark:hover:bg-gray-700 group">
                <img src='src\assets\imagens\icons8-bate-papo-32.png' width="26px" height="26px"/>                
                <span className="flex-1 ml-3 whitespace-nowrap">Chat</span>
                <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
             </a>
-         </li> */}
+         </li> }
          {/* MAPA */}
-         {/* <li>
+         {<li>
             <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-purple-200 dark:hover:bg-gray-700 group">
                <img src='src\assets\imagens\icons8-mapa-26.png' width="26px" height="26px"/>                
                <span className="flex-1 ml-3 whitespace-nowrap">Mapa</span>
             </a>
-         </li> */}
+         </li>}
          {/* HISTÓRICO */}
-         {/* <li>
+         {<li>
             <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-purple-200 dark:hover:bg-gray-700 group">
                <img src='src\assets\imagens\icons8-histórico-50.png' width="26px" height="26px"/>
                <span className="flex-1 ml-3 whitespace-nowrap">Historico</span>
             </a>
-         </li> */}
+         </li>}
          {/* USUÁRIO */}
-         {/* <li>
+         { <li>
             <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-purple-200 dark:hover:bg-gray-700 group">
                <img src='src\assets\imagens\icons8-usuário-26 (1).png' width="26px" height="26px"/>                
                <span className="flex-1 ml-3 whitespace-nowrap">Usuário</span>
             </a>
-         </li> */}
+         </li>}
          {/* SOBRE */}
-         {/* <li>
+         {<li>
             <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-purple-200 dark:hover:bg-gray-700 group">
                <img src='src\assets\imagens\icons8-sobre-26.png' width="26px" height="26px"/>                
                <span className="flex-1 ml-3 whitespace-nowrap">Sobre</span>
             </a>
-         </li> */}
+         </li>}
       </ul>
       
       <div className='border-t-2 border-purple-400 my-2 py-2'>

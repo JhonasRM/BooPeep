@@ -13,26 +13,33 @@ function Signup_Main() {
 
     const handleSignup = async (e: React.FormEvent<HTMLInputElement>) => {
         e.preventDefault();
-        if(password === confirm){
+        if(password !== confirm){
+            setConfirm('Senhas não conhecidem')
+        } else if(password === confirm){
         // console.log(email, password)
         setConfirm('')
         try{
-        const response = await axios.post('http://localhost:4000/db/user', JSON.stringify({id, name, email, password, phone, course}),
+        const response = await axios.post('http://localhost:4000/db/user', JSON.stringify({
+            name,
+            email,
+            password,
+            phone,
+            // course
+        }),
         {
             headers: {'Content-Type':'application/json'}
         })
+        if (response.status === 401){
+            setError('Você já possui um usuário cadastrado!')
+        }
         setUser(response.data)
     } catch (err){
         if(error){
             setError('Erro ao acessar o servidor')
-        } else if (error.response.status === 401){
-            setError('Você já possui um usuário cadastrado!')
         }
     }
     }
-    else if(password !== confirm){
-        setConfirm('Senhas não conhecidem')
-    }
+    
     }
     return(
         <section className='bg-indigo-200 h-screen'>
@@ -102,7 +109,7 @@ function Signup_Main() {
                         </div>
 
                         {/* TELEFONE */}
-                        <div>
+                        {/*<div>
                                 <label htmlFor="telephone" className="block mb-2 text-lm font-medium text-gray-900 
                                 dark:text-white text-center">Insira seu Telefone</label>
                                 <input type="tel" name="caixatelefone" id="telephonebox"
@@ -110,7 +117,7 @@ function Signup_Main() {
                                 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 
                                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
                                 dark:focus:border-blue-500" required onChange={(e) => setPhone}/>
-                        </div>        
+                        </div>*/}        
 
                         {/* CURSO */}
                         {/*<div>        

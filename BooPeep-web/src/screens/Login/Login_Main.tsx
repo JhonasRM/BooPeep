@@ -15,10 +15,9 @@ function redirecionar(){
 const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    console.log(email, password)
-    
+    // console.log(email, password)
     try{
-        const resp = await axios.get('http://localhost:4000/api/user')
+        const resp = await axios.get(`http://localhost:3000/api/user:${email}`)
     setUser(resp.data)
     console.log(resp.data)
     if(resp.status === 200){
