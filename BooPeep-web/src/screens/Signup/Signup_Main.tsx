@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from 'axios'
+import { useNavigate } from "react-router-dom"
 
 function Signup_Main() {
     // const [ID, setID] = useState('')
@@ -11,7 +12,10 @@ function Signup_Main() {
     // const [course, setCourse] = useState('')
     const [error, setError] = useState('')
     const [user, setUser] = useState(null)
-
+    const navigate = useNavigate
+    function redirecionar() {
+        navigate("/home");
+      }
     const handleSignup = async (e: React.FormEvent<HTMLInputElement>) => {
         e.preventDefault();
         if(password !== confirm){
@@ -30,6 +34,9 @@ function Signup_Main() {
         {
             headers: {'Content-Type':'application/json'}
         })
+        if (resp.status === 200) {
+            redirecionar();
+          }
         if (response.status === 401){
             setError('Você já possui um usuário cadastrado!')
         }

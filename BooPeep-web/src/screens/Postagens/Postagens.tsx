@@ -1,10 +1,12 @@
-import Sidebar from "../../component/Sidebar/Sidebar.tsx";
+import Sidebar from "../Homepage/components/Sidebar/index.tsx";
+import Header from "../Homepage/components/Header/index.tsx"
 import Post from "../../component/Post/Post.tsx";
 
 function Postagens() {
     return (
         <div>
-            <Sidebar />
+            <Header/>
+            <Sidebar/>
             <Post />
         </div>
     )

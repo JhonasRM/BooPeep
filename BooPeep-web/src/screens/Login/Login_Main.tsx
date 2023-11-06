@@ -6,7 +6,6 @@ function Login_Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
   function redirecionar() {
     navigate("/home");
@@ -23,25 +22,24 @@ function Login_Main() {
     }
 
     try {
-      const resp = await axios
+      const response = await axios
         .get("http://localhost:3000/db/user", {
           params: {
             email,
             password,
           },
         })
-        .then((resp) => {
-          if (resp.status === 200) {
+        .then((response) => {
+          if (response.status === 200) {
             redirecionar();
-          } else if (resp.status === 404) {
-            setIsVisible(true)
+          }else if (response.status != 200) {
             setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
             <span className="font-medium">Acesso negado!</span> Credenciais Inválidas!
-        </div>);
+        </div>)
           }
         });
-    } catch (error) {
-      if (error) {<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+    } catch (err) {
+      if (err) {<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
       <span className="font-medium">Acesso negado!</span> Erro ao acessar o Servidor !
   </div>
       }
@@ -124,6 +122,7 @@ function Login_Main() {
                   {" "}
                   Entrar{" "}
                 </button>
+
                 <p>{error}</p>
 
                 <p className="text-sm font-light text-black dark:text-gray-400">
