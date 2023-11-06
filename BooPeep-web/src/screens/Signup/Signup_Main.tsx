@@ -34,16 +34,20 @@ function Signup_Main() {
         {
             headers: {'Content-Type':'application/json'}
         })
-        if (resp.status === 200) {
+        if (response.status === 200) {
             redirecionar();
           }
         if (response.status === 401){
-            setError('Você já possui um usuário cadastrado!')
+            setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <span className="font-medium">Você já possui um cadastro!</span>
+        </div>)
         }
         setUser(response.data)
     } catch (err){
-        if(error){
-            setError('Erro ao acessar o servidor')
+        if(err){
+            setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+      <span className="font-medium">Acesso negado!</span> Erro ao acessar o Servidor !
+  </div>)
         }
     }
     }

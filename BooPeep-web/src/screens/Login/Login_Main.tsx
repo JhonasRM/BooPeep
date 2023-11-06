@@ -39,9 +39,10 @@ function Login_Main() {
           }
         });
     } catch (err) {
-      if (err) {<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+      if (err) {
+      setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
       <span className="font-medium">Acesso negado!</span> Erro ao acessar o Servidor !
-  </div>
+  </div>)
       }
     }
   };
