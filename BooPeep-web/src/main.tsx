@@ -9,7 +9,9 @@ import Homepage from './screens/Homepage/App/App.tsx'
 import Signup_Main from './screens/Signup/Signup_Main.jsx'
 import Postagens from './screens/Postagens/Postagens.tsx'
 import Sobre from "./screens/Sobre/Sobre.tsx";
-import CreatePost from "./component/CreatePost/CreatePost.tsx";
+//import CreatePost from "./component/CreatePost/CreatePost.tsx";
+import Droptest from "./component/TEST/DropdownTest/Droptest.tsx";
+
 
 const router = createBrowserRouter([
     {
@@ -42,7 +44,7 @@ const router = createBrowserRouter([
     },
     {
       path: "test",
-      element: <CreatePost />
+      element: <Droptest />
     }
 ])
 
