@@ -2,28 +2,29 @@ import { useState } from "react"
 import axios from 'axios'
 
 function Signup_Main() {
+    // const [ID, setID] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirm, setConfirm] = useState('')
     const [phone, setPhone] = useState('')
-    const [course, setCourse] = useState('')
+    // const [course, setCourse] = useState('')
     const [error, setError] = useState('')
     const [user, setUser] = useState(null)
 
     const handleSignup = async (e: React.FormEvent<HTMLInputElement>) => {
         e.preventDefault();
         if(password !== confirm){
-            setConfirm('Senhas não conhecidem')
+            setError('Senhas não conhecidem')
         } else if(password === confirm){
         // console.log(email, password)
-        setConfirm('')
+        
         try{
-        const response = await axios.post('http://localhost:4000/db/user', JSON.stringify({
+        const response = await axios.post('http://localhost:3000/db/user', JSON.stringify({
             name,
             email,
             password,
-            phone,
+            // phone,
             // course
         }),
         {
@@ -71,7 +72,7 @@ function Signup_Main() {
                             text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 
                             block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
                             dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                            required onChange={(e) => setName} />
+                            required onChange={(e) => setName(e.target.value)} />
                         </div>
 
                         {/* EMAIL */}
@@ -82,7 +83,7 @@ function Signup_Main() {
                             text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 
                             block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 
                             dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                            required onChange={(e) => setEmail}/>
+                            required onChange={(e) => setEmail(e.target.value)}/>
                         </div>
 
                         {/* SENHA */}
@@ -93,19 +94,19 @@ function Signup_Main() {
                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
                                 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 
                                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
-                                dark:focus:border-blue-500" required onChange={(e) => setPassword}/>
+                                dark:focus:border-blue-500" required onChange={(e) => setPassword(e.target.value)}/>
                         </div>                        
                         
                         {/* CONFIRMAR SENHA */}
                         <div>
-                            <p>{confirm}</p>
-                            <label htmlFor="confirm-password" className="block mb-2 text-lm font-medium text-gray-900 
+                            {/* <p>{error}</p> */}
+                            <label htmlFor="password" className="block mb-2 text-lm font-medium text-gray-900 
                             dark:text-white text-center">Insira de novo a sua Senha</label>
-                            <input type="confirm-password" name="confirmarsenha" id="confirmbox" 
+                            <input type="password" name="confirmarsenha" id="passwordbox" 
                             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
                             focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 
                             dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 
-                            dark:focus:border-blue-500" required onChange={(e) => setConfirm}/>
+                            dark:focus:border-blue-500" required onChange={(e) => setConfirm(e.target.value)}/>
                         </div>
 
                         {/* TELEFONE */}
@@ -132,12 +133,11 @@ function Signup_Main() {
                                 <option value="DS">Desenvolvimento de Sistemas</option>
                                 <option value="JUR">Juridico</option>
                                 <option value="LOG">Logistica</option>
-            </select> */}
-                                            
-                        <a href="home" type="submit" className="w-full text-black hover:bg-purple-600 
+            </select> */}   <p>{error}</p>
+                                <button type="button" className="w-full text-black hover:bg-purple-600 
                         focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 
                         py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 
-                        dark:focus:ring-primary-800 bg-purple-500 mt-3" onChange={(e) => handleSignup}> Finalizar Cadastro </a>
+                        dark:focus:ring-primary-800 bg-purple-500 mt-3" onClick ={(e) => handleSignup(e)}> Finalizar Cadastro </button> 
                         {/*</div>*/}
 
                         <div>
