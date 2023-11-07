@@ -28,7 +28,7 @@ const Sidebar = ({ active }) => {
         <a href='/postagens'><SidebarItem Icon={FaRegFileAlt} Text="Postar" /></a>
         <a href='/test'><SidebarItem Icon={FaEnvelope} Text="Conversas" /></a>
         <a href='/sobre'><SidebarItem Icon={FaUserAlt} Text="Sobre Nós" /></a>
-        <a href='/'><SidebarItem Icon={FaRegSun} Text="Configurações" /></a>
+        <a ><SidebarItem Icon={FaRegSun} Text="Configurações" /></a>
         {/* <SidebarItem Icon={FaRegCalendarAlt} Text="Calendar" /> */}
         {/* <SidebarItem Icon={FaChartBar} Text="Postar" /> */}
         {/* <SidebarItem Icon={FaIdCardAlt} Text="Employeer" /> */}

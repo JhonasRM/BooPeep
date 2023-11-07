@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 function Login_Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  var err = null
   function redirecionar() {
     navigate("/home");
   }
@@ -32,17 +32,21 @@ function Login_Main() {
         .then((response) => {
           if (response.status === 200) {
             redirecionar();
-          }else if (response.status != 200) {
-            setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-            <span className="font-medium">Acesso negado!</span> Credenciais Inválidas!
-        </div>)
+          }else if (response.status === 404) {
+            throw err = 2
+          } else if (response.status != 200 && response.status != 404 ){
+            throw err = 1
           }
+
         });
     } catch (err) {
-      if (err) {
+      if (err == 1) {
       setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
       <span className="font-medium">Acesso negado!</span> Erro ao acessar o Servidor !
   </div>)
+      }else if(err == 2){
+        setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <span className="font-medium">Acesso negado!</span> Credenciais Inválidas! </div>)
       }
     }
   };
@@ -52,8 +56,8 @@ function Login_Main() {
       <section className="bg-indigo-200 h-screen">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a className="flex items-center mb-6 text-4xl font-semibold text-gray-900 dark:text-white">
-            {/*<img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" 
-                alt="logo" />*/}
+            {/* <img className="w-8 h-8 mr-2" src="../../assets/imagens/808266(1).png" 
+                alt="logo" /> */}
             BooPeep
           </a>
 
