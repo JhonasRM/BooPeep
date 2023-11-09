@@ -14,10 +14,10 @@ const Feed: React.FC = () => {
     const [error, setError] = useState<string>("");
     const [post, setPost] = useState<Post[]>([]);
     const [newPost, setNewpost] = useState<{
-        situation: Number;
-        description: String;
-        image: String;
-        contato: String;
+        situation: number;
+        description: string;
+        image: string;
+        contato: string;
     }>({
         situation: 0,
         description: '',
@@ -105,16 +105,15 @@ const Feed: React.FC = () => {
       }
             <div>
                 <div className="p-4 sm:ml-64">
-                    <div className="p-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300">
-                        <div className="">
-                            {post.map((post) => (
-                                <div key={post._id} className='mt-8'>
+                {post.map((post) => (
+                    <div key={post._id} className="p-4 mb-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300">
+                        
                                     <h3>{post.contato}</h3>
                                     {/* <img src={post.image} alt="Post" /> */}
                                     <p>{post.description}</p>
                                 </div>
                             ))}
-                        </div>
+                        
                         {error && (
                             <div
                                 className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
@@ -123,7 +122,7 @@ const Feed: React.FC = () => {
                                 <span className="font-medium">{error}</span>
                             </div>
                         )}
-                    </div>
+                    
                 </div>
             </div>
             <button onClick={openModal}>Postar</button>

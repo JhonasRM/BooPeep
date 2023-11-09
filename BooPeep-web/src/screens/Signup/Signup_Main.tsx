@@ -1,3 +1,5 @@
+import Header from "../Homepage/components/Header"
+
 import React, { useState } from "react"
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
@@ -13,7 +15,7 @@ function Signup_Main() {
     const [error, setError] = useState('')
     const [user, setUser] = useState(null)
     const navigate = useNavigate()
-    var err = null
+    let err = null
     function redirecionar() {
         navigate('/home')
     }
@@ -61,19 +63,19 @@ function Signup_Main() {
 
     }
     return (
-        <section className='bg-indigo-200 h-screen'>
+        <section className='h-full'>
+            <Header />
+            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto pt-12">
 
-            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto">
+                <div className="w-full rounded-3xl shadow dark:border md:mt-0 sm:max-w-2xl xl:p-0 dark:bg-gray-800 
+            dark:border-gray-700 bg-purple-300 border-solid border-2 border-purple-500">
+                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
 
-                <a className="flex items-center mb-6 text-4xl font-semibold text-gray-900 dark:text-white">
+                    <a className="flex items-center justify-center mt-6 pb-2 mx-20 border-b-2 border-purple-600 rounded-sm text-4xl font-semibold text-gray-900 dark:text-white">
                     {/*<img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" 
                 alt="logo" />*/}
                     BooPeep
                 </a>
-
-                <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 
-            dark:border-gray-700 bg-purple-300 border-solid border-2 border-purple-400">
-                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
 
                         <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl 
                     dark:text-white">
