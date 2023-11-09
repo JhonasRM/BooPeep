@@ -1,28 +1,27 @@
+import Header from "../Homepage/components/Header";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthProvider } from "../../services/AuthContent";
 import axios from "axios";
 function Login_Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [user, setUser] = useState('')
   const navigate = useNavigate();
-  var err = null
+  let err = null
   function redirecionar() {
     navigate("/home");
   }
   const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
-
     // console.log(email, password)
     if(email == "" || password == ""){
       setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
                 <span className="font-medium">Acesso negado!</span> Campos não preenchidos
             </div>)
     }
-
     try {
-      login(email, password)
       const response = await axios
         .get("http://localhost:3000/db/user", {
           params: {
@@ -33,12 +32,12 @@ function Login_Main() {
         .then((response) => {
           if (response.status === 200) {
             redirecionar();
+            setUser(response.data)
           }else if (response.status === 404) {
             throw err = 2
           } else if (response.status != 200 && response.status != 404 ){
             throw err = 1
           }
-
         });
     } catch (err) {
       if (err == 1) {
@@ -52,20 +51,20 @@ function Login_Main() {
     }
   };
 
-  return (
-    <div>
-      <section className="bg-indigo-200 h-screen">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <a className="flex items-center mb-6 text-4xl font-semibold text-gray-900 dark:text-white">
+  return (  
+    <div className="h-screen">
+      <Header />
+      <section>
+        <div className="flex flex-col items-center justify-center px-6 py-6 mx-auto pt-12">
+          <div className="w-full rounded-3xl shadow dark:border md:mt-0 sm:max-w-2xl xl:p-0 dark:bg-gray-800 
+            dark:border-gray-700 bg-purple-300 border-solid border-2 border-purple-500">
+            <a className="flex items-center justify-center mt-6 pb-2 mx-20 border-b-2 border-purple-600 rounded-sm text-4xl font-semibold text-gray-900 dark:text-white">
             {/* <img className="w-8 h-8 mr-2" src="../../assets/imagens/808266(1).png" 
                 alt="logo" /> */}
             BooPeep
           </a>
 
-          <div
-            className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 
-            dark:border-gray-700 bg-purple-300 border-solid border-2 border-purple-400"
-          >
+         
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1
                 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl 
@@ -73,7 +72,6 @@ function Login_Main() {
               >
                 Entre com seu usuário
               </h1>
-
               <form className="space-y-4 md:space-y-6" action="#">
                 <div>
                   <label
@@ -95,7 +93,6 @@ function Login_Main() {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
-
                 <div>
                   <label
                     htmlFor="password"
@@ -116,9 +113,8 @@ function Login_Main() {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-
                 <button
-                  type="button "
+                  type="button"
                   className="w-full text-black hover:bg-purple-600 
                         focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 
                         py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 
@@ -128,9 +124,7 @@ function Login_Main() {
                   {" "}
                   Entrar{" "}
                 </button>
-
                 <p>{error}</p>
-
                 <p className="text-sm font-light text-black dark:text-gray-400">
                   Não possui uma conta?{" "}
                   <a

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { MagicMotion } from "react-magic-motion";
 import axios from "axios";
 import CreatePost from "../CreatePost/CreatePost";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -60,12 +59,20 @@ const Feed: React.FC = () => {
     };
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const [isImagelOpen, setIsImageOpen] = useState(false);
+    const openImage = () => {
+        setIsImageOpen(true);
+    };
     const openModal = () => {
         setIsModalOpen(true);
     };
 
     const closeModal = () => {
         setIsModalOpen(false);
+    };
+
+    const closeImage = () => {
+        setIsImageOpen(false)
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -88,6 +95,9 @@ const Feed: React.FC = () => {
                 setError('Erro ao criar o post')
             }
         )
+    }
+    const checkout = () => {
+        
     }
 
     useEffect(() => {
@@ -112,82 +122,88 @@ const Feed: React.FC = () => {
 
     return (
         <>
-            <MagicMotion>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                {isModalOpen && (
+
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {isModalOpen && (
+                <>
+                    <CreatePost />
+                </>
+            )
+            }
+
+            <FeedWrapper>
+                {post.map((post, user) => (
                     <>
-                        <CreatePost />
+                        <div className="p-4 sm:ml-64">
+                            <TweetContainer className="p-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300" r>
+                                <div>
+                                    <TweetContent>
+                                        <Avatar src="./src/assets/imagens/Dev_desenvolvimento.gif" alt="Avatar" />
+                                        <div key={post._id} className="mt-8">
+                                            <h3>{post.contato}</h3>
+
+                                            {isImagelOpen && (
+                                                <>
+                                                    <img src={post.image} alt="Post" />
+                                                </>
+                                            )
+                                            }
+                                            <p>{post.description}</p>
+                                        </div>
+                                        {isCommenting && (
+                                            <div className="comment-area">
+                                                <textarea
+                                                    placeholder="Digite seu comentário..."
+                                                    value={comment}
+                                                    onChange={(e) => setComment(e.target.value)}
+                                                />
+                                                <button onClick={handleCommentSubmit}>Comentar</button>
+                                            </div>
+                                        )}
+                                        <div className="comment-history">
+                                            {comments.map((comment, index) => (
+                                                <div key={index}>{comment}</div>
+                                            ))}
+                                        </div>
+                                        <hr />
+                                        <FontAwesomeIcon icon={faHeart} className="icon" /> {/* Ícone de "like" */}
+
+                                        <FontAwesomeIcon
+                                            icon={faComment}
+                                            className={`icon comment-icon ${isCommenting ? 'active' : ''}`}
+                                            onClick={handleCommentIconClick}
+                                        />
+                                    </TweetContent>
+                                </div>
+                            </TweetContainer>
+                            <br />
+                        </div>
                     </>
-                )
+
+                ))
                 }
 
-                <FeedWrapper>
-                    {post.map((post, user) => (
-                        <>
-                            <div className="p-4 sm:ml-64">
-                                <TweetContainer className="p-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300" r>
-                                    <div>
-                                        <TweetContent>
-                                            <Avatar src="./src/assets/imagens/Dev_desenvolvimento.gif" alt="Avatar" />
-                                            <div key={post._id} className="mt-8">
-                                                <h3>{post.contato}</h3>
-                                                <img src={post.image} alt="Post" />
-                                                <p>{post.description}</p>
-                                            </div>
-                                            {isCommenting && (
-                                                <div className="comment-area">
-                                                    <textarea
-                                                        placeholder="Digite seu comentário..."
-                                                        value={comment}
-                                                        onChange={(e) => setComment(e.target.value)}
-                                                    />
-                                                    <button onClick={handleCommentSubmit}>Comentar</button>
-                                                </div>
-                                            )}
-                                            <div className="comment-history">
-                                                {comments.map((comment, index) => (
-                                                    <div key={index}>{comment}</div>
-                                                ))}
-                                            </div>
-                                                <hr />
-                                                <FontAwesomeIcon icon={faHeart} className="icon" /> {/* Ícone de "like" */}
-
-                                                <FontAwesomeIcon
-                                                    icon={faComment}
-                                                    className={`icon comment-icon ${isCommenting ? 'active' : ''}`}
-                                                    onClick={handleCommentIconClick}
-                                                />
-                                        </TweetContent>
-                                    </div>
-                                </TweetContainer>
-                                <br />
-                            </div>
-                        </>
-
-                    ))
-                    }
 
 
+                <div className="p-4 sm:ml-64">
+                    <div className="p-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300">
+                        <div className="">
 
-                    <div className="p-4 sm:ml-64">
-                        <div className="p-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300">
-                            <div className="">
-
-                                {error && (
-                                    <div
-                                        className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-                                        role="alert"
-                                    >
-                                        <span className="font-medium">{error}</span>
-                                    </div>
-                                )}
-                            </div>
+                            {error && (
+                                <div
+                                    className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                                    role="alert"
+                                >
+                                    <span className="font-medium">{error}</span>
+                                </div>
+                            )}
                         </div>
                     </div>
-                    <button onClick={openModal}>Postar</button>
-                </FeedWrapper>
+                </div>
+                <button onClick={openModal}>Postar</button>
+            </FeedWrapper>
 
-            </MagicMotion>
+
         </>
     )
 }
