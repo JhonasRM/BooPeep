@@ -1,13 +1,13 @@
-import Sidebar from "../Homepage/components/Sidebar/index.tsx";
-import About from "../../component/Dev/desenvolvimento.tsx";
+import Header from "../../screens/Homepage/components/Header";
 
 function Dev() {
     return (
      <div>
-        <h1>Está em desenvolvimento ....</h1>
-
-        <img src="../../assets/imagens/Dev_desenvolvimento" />
-
+        <Header/>
+        <center><h1>Está em desenvolvimento ....</h1>
+        </center>
+        
+        <img src="../../../src/assets/imagens/Dev_desenvolvimento.gif" />
      </div>
     )
 }

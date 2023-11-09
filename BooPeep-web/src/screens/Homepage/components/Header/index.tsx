@@ -3,7 +3,7 @@ import { Container } from './styles'
 import { FaBars } from 'react-icons/fa'
 import Sidebar from '../Sidebar'
 
-function Header() {
+function Header(){
   const [sidebar, setSidebar] = useState(false)
 
   const showSiderbar = () => setSidebar(!sidebar)

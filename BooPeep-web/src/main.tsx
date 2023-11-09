@@ -12,7 +12,7 @@ import Sobre from "./screens/Sobre/Sobre.tsx";
 import Dev from "./component/Dev/desenvolvimento.tsx";
 //import CreatePost from "./component/CreatePost/CreatePost.tsx";
 import Droptest from "./component/TEST/DropdownTest/Droptest.tsx";
-
+// import Feed from "./component/Feed/Feed.tsx"
 
 const router = createBrowserRouter([
     {
@@ -50,8 +50,11 @@ const router = createBrowserRouter([
     {
       path: "Dev",
       element: <Dev />
-    }
-
+    },
+    // {
+    //   path: "Feed",
+    //   element: <Feed/>
+    // }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

@@ -1,9 +1,13 @@
 import './App.css';
-import Header from '../components/Header/index'
 
-function Homepage() {
+import Header from '../components/Header/index.tsx';
+import Feed from '../../../component/Feed/Feed.tsx';
+function Homepage(){
   return (
-   <Header/> 
+   <div>
+  <Header />
+  <Feed />
+    </div>
   )
 }
 

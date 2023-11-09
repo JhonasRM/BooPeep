@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 function Login_Main() {
@@ -10,7 +10,6 @@ function Login_Main() {
   function redirecionar() {
     navigate("/home");
   }
-
   const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
 

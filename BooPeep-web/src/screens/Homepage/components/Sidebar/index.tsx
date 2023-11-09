@@ -25,7 +25,7 @@ const Sidebar = ({ active }) => {
       <FaTimes onClick={closeSidebar} />  
       <Content>
         <a href='/home'><SidebarItem Icon={FaHome} Text="Home"/></a>
-        <a href='/postagens'><SidebarItem Icon={FaRegFileAlt} Text="Postar" /></a>
+        {/* <a href='/postagens'><SidebarItem Icon={FaRegFileAlt} Text="Postar" /></a> */}
         <a href='/test'><SidebarItem Icon={FaEnvelope} Text="Conversas" /></a>
         <a href='/sobre'><SidebarItem Icon={FaUserAlt} Text="Sobre Nós" /></a>
         <a ><SidebarItem Icon={FaRegSun} Text="Configurações" /></a>
