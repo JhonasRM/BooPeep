@@ -1,37 +1,71 @@
 import { useEffect, useState } from "react";
 import { MagicMotion } from "react-magic-motion";
 import axios from "axios";
-
+import CreatePost from "../CreatePost/CreatePost";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faComment } from '@fortawesome/free-solid-svg-icons';
+import {
+    FeedWrapper,
+    TweetContainer,
+    Avatar,
+    TweetContent,
+    UserName,
+    TweetText,
+} from './style';
 interface Post {
     _id: number;
-    situation: number;
+    // situation: number;
     description: string;
     image: string;
     contato: string;
 }
+interface User {
+    // id: Number,
+    name: String,
+    phone: Number,
+    //course: String,
+}
+
 
 const Feed: React.FC = () => {
     const [error, setError] = useState<string>("");
     const [post, setPost] = useState<Post[]>([]);
+    const [user, setUser] = useState<User[]>([])
     const [newPost, setNewpost] = useState<{
-        situation: number;
-        description: string;
-        image: string;
-        contato: string;
+        // situation: Number;
+        description: String;
+        image: String;
+        contato: String;
+        coment: String;
     }>({
-        situation: 0,
+        // situation: 0,
         description: '',
         image: 'Sem foto',
-        contato: ''
+        contato: '',
+        coment: ''
     })
+    const [isCommenting, setIsCommenting] = useState(false);
+    const [comment, setComment] = useState('');
+    const [comments, setComments] = useState([]);
+
+    const handleCommentIconClick = () => {
+        setIsCommenting(true);
+    };
+
+    const handleCommentSubmit = () => {
+        if (comment.trim() !== '') {
+            setComments([...comments, comment]);
+            setComment('');
+        }
+    };
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
-      setIsModalOpen(true);
+        setIsModalOpen(true);
     };
-  
+
     const closeModal = () => {
-      setIsModalOpen(false);
+        setIsModalOpen(false);
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -42,10 +76,11 @@ const Feed: React.FC = () => {
         const response: any = axios.post("http://localhost:3000/db/post", newPost).then((response) => {
             setPost([...post, response.data])
             setNewpost({
-                situation: 0,
+                // situation: 0,
                 description: '',
                 image: 'Sem foto',
-                contato: ''
+                contato: '',
+                coment: '',
             })
             setError('')
         },
@@ -71,63 +106,89 @@ const Feed: React.FC = () => {
                 console.error("Error fetching data: ", error);
             }
         };
-        fetchData();
+
+        fetchData()
     }, []);
 
     return (
-    <MagicMotion>
-        <div>
-            <h1>Boo-Peep</h1>
-            {error && <p style={{color: 'red'}}>{error}</p>}
-            {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={closeModal}>
-              &times;</span>
-              <form onSubmit={handleFormSubmit}>
-            <div className="w-16">
-                        <label>
-                            <img src="src\assets\imagens\icons8-imagem-26.png" />
-                            <input type="file"  className="hidden" onChange={handleInputChange} />
-                        </label>
-                    </div>
-                <input type="text" name="contato" id="" placeholder="contato" value={newPost.contato} onChange={handleInputChange} />
-                <textarea name="description" id="" value={newPost.description} onChange={handleInputChange} ></textarea>
-                <div className="flex border-solid border-2 border-black w-16 items-center rounded bg-violet-400 
-            gap-2">
-                    
-                    <button type="submit"> Postar </button>
-                </div>
-            </form>
-            </div>
-        </div>
-            )
-      }
-            <div>
-                <div className="p-4 sm:ml-64">
-                {post.map((post) => (
-                    <div key={post._id} className="p-4 mb-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300">
-                        
-                                    <h3>{post.contato}</h3>
-                                    {/* <img src={post.image} alt="Post" /> */}
-                                    <p>{post.description}</p>
-                                </div>
-                            ))}
-                        
-                        {error && (
-                            <div
-                                className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-                                role="alert"
-                            >
-                                <span className="font-medium">{error}</span>
+        <>
+            <MagicMotion>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {isModalOpen && (
+                    <>
+                        <CreatePost />
+                    </>
+                )
+                }
+
+                <FeedWrapper>
+                    {post.map((post, user) => (
+                        <>
+                            <div className="p-4 sm:ml-64">
+                                <TweetContainer className="p-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300" r>
+                                    <div>
+                                        <TweetContent>
+                                            <Avatar src="./src/assets/imagens/Dev_desenvolvimento.gif" alt="Avatar" />
+                                            <div key={post._id} className="mt-8">
+                                                <h3>{post.contato}</h3>
+                                                <img src={post.image} alt="Post" />
+                                                <p>{post.description}</p>
+                                            </div>
+                                            {isCommenting && (
+                                                <div className="comment-area">
+                                                    <textarea
+                                                        placeholder="Digite seu comentário..."
+                                                        value={comment}
+                                                        onChange={(e) => setComment(e.target.value)}
+                                                    />
+                                                    <button onClick={handleCommentSubmit}>Comentar</button>
+                                                </div>
+                                            )}
+                                            <div className="comment-history">
+                                                {comments.map((comment, index) => (
+                                                    <div key={index}>{comment}</div>
+                                                ))}
+                                            </div>
+                                                <hr />
+                                                <FontAwesomeIcon icon={faHeart} className="icon" /> {/* Ícone de "like" */}
+
+                                                <FontAwesomeIcon
+                                                    icon={faComment}
+                                                    className={`icon comment-icon ${isCommenting ? 'active' : ''}`}
+                                                    onClick={handleCommentIconClick}
+                                                />
+                                        </TweetContent>
+                                    </div>
+                                </TweetContainer>
+                                <br />
                             </div>
-                        )}
-                    
-                </div>
-            </div>
-            <button onClick={openModal}>Postar</button>
-        </div>
-    </MagicMotion>
+                        </>
+
+                    ))
+                    }
+
+
+
+                    <div className="p-4 sm:ml-64">
+                        <div className="p-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300">
+                            <div className="">
+
+                                {error && (
+                                    <div
+                                        className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                                        role="alert"
+                                    >
+                                        <span className="font-medium">{error}</span>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                    <button onClick={openModal}>Postar</button>
+                </FeedWrapper>
+
+            </MagicMotion>
+        </>
     )
 }
 

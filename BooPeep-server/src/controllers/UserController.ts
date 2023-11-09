@@ -10,7 +10,7 @@ import {  User, User as UserModel } from '../models/userSchema';
                 name : req.body.name, 
                 email: req.body.email,
                 password: req.body.password,
-               //phone: req.body.pho    ne,
+               //phone: req.body.phone,
                 //course: req.body.course
             };
             const val = await UserModel.findOne({email: req.body.email, password: req.body.password})

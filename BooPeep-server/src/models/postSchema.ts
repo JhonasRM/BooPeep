@@ -2,6 +2,7 @@ import mongoose, { Schema, Document, model, Model } from 'mongoose'
 
 interface Post extends Document {
   _id: Number,
+  author_id: Number,
   situation: Number,
   description: String,
   image: String,
@@ -13,6 +14,10 @@ const postSchema: Schema<Post> = new Schema({
   _id: {
     type: Number,
     required: false
+  },
+  author_id: {
+    type:Number,
+    required: true
   },
   situation: {
     type: Number,

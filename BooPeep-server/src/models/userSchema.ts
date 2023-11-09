@@ -7,6 +7,7 @@ interface User extends Document {
   password: String,
  // phone: Number,
   //course: String,
+  post_id: Number,
 }
 
 const userSchema: Schema<User> = new Schema({
@@ -34,6 +35,10 @@ const userSchema: Schema<User> = new Schema({
   //   type: String,
   //   required: false
   // },
+  post_id:{
+    type: Number,
+    required: false
+  }
 },
 { timestamps: true}
 )
