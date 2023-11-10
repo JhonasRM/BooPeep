@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: #a855f7;
+  background-color: #a5b4fc;
   position: fixed;
   height: 100%;
   top: 0px;
@@ -9,7 +9,7 @@ export const Container = styled.div`
   width: 300px;
   left: ${props => props.sidebar ? '0' : '-100%'};
   animation: showSidebar .4s;
-  border: 2px solid #c084fc;
+  border: 1px solid gray;
   border-radius: 0% 10% 10% 0%;
 
   > svg {

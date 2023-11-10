@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import {  Post as PostModel } from '../models/postSchema';
 
- const PostController = {
+const PostController = {
 
     create: async(req: Request, res: Response) => {
         try{
@@ -68,7 +68,6 @@ import {  Post as PostModel } from '../models/postSchema';
         image: req.body.image,
        
     };
-
             const updatedUser = await PostModel.findByIdAndUpdate(id, user)
 
             if(!user){
@@ -79,6 +78,8 @@ import {  Post as PostModel } from '../models/postSchema';
     
         }
     }
+
+
 
 export default PostController;
 

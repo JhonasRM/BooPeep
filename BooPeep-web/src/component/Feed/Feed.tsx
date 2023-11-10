@@ -59,46 +59,10 @@ const Feed: React.FC = () => {
     };
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const [isImagelOpen, setIsImageOpen] = useState(false);
-    const openImage = () => {
-        setIsImageOpen(true);
-    };
+
     const openModal = () => {
         setIsModalOpen(true);
     };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
-
-    const closeImage = () => {
-        setIsImageOpen(false)
-    };
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setNewpost({ ...newPost, [e.target.name]: e.target.value })
-    }
-    const handleFormSubmit = (e: React.FormEvent) => {
-        e.preventDefault;
-        const response: any = axios.post("http://localhost:3000/db/post", newPost).then((response) => {
-            setPost([...post, response.data])
-            setNewpost({
-                // situation: 0,
-                description: '',
-                image: 'Sem foto',
-                contato: '',
-                coment: '',
-            })
-            setError('')
-        },
-            (error) => {
-                setError('Erro ao criar o post')
-            }
-        )
-    }
-    const checkout = () => {
-        
-    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -122,8 +86,6 @@ const Feed: React.FC = () => {
 
     return (
         <>
-
-            {error && <p style={{ color: 'red' }}>{error}</p>}
             {isModalOpen && (
                 <>
                     <CreatePost />
@@ -135,19 +97,17 @@ const Feed: React.FC = () => {
                 {post.map((post, user) => (
                     <>
                         <div className="p-4 sm:ml-64">
-                            <TweetContainer className="p-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300" r>
+                            <TweetContainer className="p-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300" >
                                 <div>
                                     <TweetContent>
                                         <Avatar src="./src/assets/imagens/Dev_desenvolvimento.gif" alt="Avatar" />
                                         <div key={post._id} className="mt-8">
                                             <h3>{post.contato}</h3>
 
-                                            {isImagelOpen && (
-                                                <>
-                                                    <img src={post.image} alt="Post" />
-                                                </>
-                                            )
-                                            }
+                                           
+                                                    {/* <img src={post.image} alt="Post" /> */}
+                                                
+                                            
                                             <p>{post.description}</p>
                                         </div>
                                         {isCommenting && (
@@ -185,22 +145,31 @@ const Feed: React.FC = () => {
 
 
 
-                <div className="p-4 sm:ml-64">
-                    <div className="p-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300">
-                        <div className="">
 
-                            {error && (
+
+                {error && (
+                    <div className="p-4 sm:ml-64">
+                        <div className="p-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300">
+                            <div className="">
                                 <div
                                     className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
                                     role="alert"
                                 >
                                     <span className="font-medium">{error}</span>
                                 </div>
-                            )}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <button onClick={openModal}>Postar</button>
+                )}
+                {/* <div className="p-4 sm:ml-64">
+                    <div className="p-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300"> */}
+                        <div className="">
+                            <div>
+                                <button onClick={openModal}><span className="font-medium"><img src="./src/assets/imagens/icons8-adicionar-amigo-26.png" alt="" /></span></button>
+                            </div>
+                        </div>
+                    {/* </div>
+                </div> */}
             </FeedWrapper>
 
 

@@ -13,13 +13,44 @@ function Login_Main() {
   function redirecionar() {
     navigate("/home");
   }
+
+  // Controle de acesso do usuario
+
+  // Define uma variável global para rastrear o status de login (isso pode ser mais complexo em uma aplicação real)
+  let isLoggedIn = false;
+
+  // Função que bloqueia o acesso se o usuário não estiver logado
+  function bloquearAcessoSemLogin() {
+    if (user === '') {
+      console.log('Acesso negado! O usuário não está logado.');
+      
+    } else if( user != ''){
+      console.log('Acesso permitido! O usuário está logado.');
+      // Continue com o acesso à página ou funcionalidade protegida
+    }
+  }
+
+  // Exemplo de uso em alguma parte de sua aplicação
+  function algumaParteDaSuaAplicacao() {
+    // Chame a função para bloquear o acesso com base no status de login
+    bloquearAcessoSemLogin();
+    // Continue com a lógica da sua aplicação
+  }
+
+  // Modifique a variável isLoggedIn com base no status de login real, por exemplo, após o usuário fazer login ou sair.
+
+
+
+
+
+
   const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
     // console.log(email, password)
-    if(email == "" || password == ""){
+    if (email == "" || password == "") {
       setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                <span className="font-medium">Acesso negado!</span> Campos não preenchidos
-            </div>)
+        <span className="font-medium">Acesso negado!</span> Campos não preenchidos
+      </div>)
     }
     try {
       const response = await axios
@@ -33,25 +64,26 @@ function Login_Main() {
           if (response.status === 200) {
             redirecionar();
             setUser(response.data)
-          }else if (response.status === 404) {
+
+          } else if (response.status === 404) {
             throw err = 2
-          } else if (response.status != 200 && response.status != 404 ){
+          } else if (response.status != 200 && response.status != 404) {
             throw err = 1
           }
         });
     } catch (err) {
       if (err == 1) {
-      setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-      <span className="font-medium">Acesso negado!</span> Erro ao acessar o Servidor !
-  </div>)
-      }else if(err == 2){
         setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-            <span className="font-medium">Acesso negado!</span> Credenciais Inválidas! </div>)
+          <span className="font-medium">Acesso negado!</span> Erro ao acessar o Servidor !
+        </div>)
+      } else if (err == 2) {
+        setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+          <span className="font-medium">Acesso negado!</span> Credenciais Inválidas! </div>)
       }
     }
   };
 
-  return (  
+  return (
     <div className="h-screen">
       <Header />
       <section>
@@ -59,12 +91,11 @@ function Login_Main() {
           <div className="w-full rounded-3xl shadow dark:border md:mt-0 sm:max-w-2xl xl:p-0 dark:bg-gray-800 
             dark:border-gray-700 bg-purple-300 border-solid border-2 border-purple-500">
             <a className="flex items-center justify-center mt-6 pb-2 mx-20 border-b-2 border-purple-600 rounded-sm text-4xl font-semibold text-gray-900 dark:text-white">
-            {/* <img className="w-8 h-8 mr-2" src="../../assets/imagens/808266(1).png" 
-                alt="logo" /> */}
-            BooPeep
-          </a>
+              <img src="./src/assets/imagens/808266 (1).png" alt="" />
+              BooPeep
+            </a>
 
-         
+
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1
                 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl 
