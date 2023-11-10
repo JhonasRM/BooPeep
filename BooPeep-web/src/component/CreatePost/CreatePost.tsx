@@ -10,31 +10,58 @@ interface Post {
 }
 
 const CreatePost: React.FC = () => {
-    const [posts, setPosts] = useState<Post[]>([]);
-    const [newPost, setNewpost] = useState<{
-        // situation: Number;
-        description: string;
-        image: string;
-        contato: string;
-    }>({
-        // situation: 0,
-        description: '',
-        image: 'Sem foto',
-        contato: ''
-    })
+    const [newPost, setNewPost] = useState<Post>({
+        description: "",
+        image: "Sem foto",
+        contato: "",
+    });
     
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
+    const [IsLoading, setIsLoading] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(true);
     const [error, setError] = useState("");
 
-    const handleFormSubmit = (e: React.FormEvent) => {
+    const handleFormSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
 
+        setIsLoading(true)
+        try {
+            const response = await axios.post('http://localhost:3000/db/post', JSON.stringify({
+                    newPost
+                }),
+                    {
+                        headers: { 'Content-Type': 'application/json' }
+                    })
+                if (response.status === 201) {
+                            
+            setNewPost({
+                description: "",
+                image: "Sem foto",
+                contato: "",
+            });
+            setIsLoading(false)
+        } else if (response.status != 201){
+            throw error
+        }
+            
+        } catch (error) {
+            console.error("Erro ao enviar o formulário:", error.message);
+      setError("Erro ao enviar o formulário");
+      setIsLoading(false);
+        }
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setTimeout(openModal), 50000
+    };
+
+    const openModal = () => {
+        setIsModalOpen(true)
     }
 
     return (
         <>
+            {isModalOpen && (
             <div className="modal">
                 <div className="modal-content">
                     <div className="p-8">
@@ -75,6 +102,7 @@ const CreatePost: React.FC = () => {
                     </div>
                 </div>
             </div>
+            )}
         </>
 
     )

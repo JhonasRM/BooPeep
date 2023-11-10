@@ -6,51 +6,27 @@ import axios from "axios";
 function Login_Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [user, setUser] = useState('')
+  const [error, setError] = useState('')
   const navigate = useNavigate();
-  let err = null
   function redirecionar() {
     navigate("/home");
   }
+  const [isModalOpen, setIsModalOpen] = useState(false);
+ let err = null
 
-  // Controle de acesso do usuario
-
-  // Define uma variável global para rastrear o status de login (isso pode ser mais complexo em uma aplicação real)
-  let isLoggedIn = false;
-
-  // Função que bloqueia o acesso se o usuário não estiver logado
-  function bloquearAcessoSemLogin() {
-    if (user === '') {
-      console.log('Acesso negado! O usuário não está logado.');
-      
-    } else if( user != ''){
-      console.log('Acesso permitido! O usuário está logado.');
-      // Continue com o acesso à página ou funcionalidade protegida
-    }
-  }
-
-  // Exemplo de uso em alguma parte de sua aplicação
-  function algumaParteDaSuaAplicacao() {
-    // Chame a função para bloquear o acesso com base no status de login
-    bloquearAcessoSemLogin();
-    // Continue com a lógica da sua aplicação
-  }
-
-  // Modifique a variável isLoggedIn com base no status de login real, por exemplo, após o usuário fazer login ou sair.
-
-
-
-
-
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const handleLogin = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
+    closeModal()
     // console.log(email, password)
     if (email == "" || password == "") {
-      setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-        <span className="font-medium">Acesso negado!</span> Campos não preenchidos
-      </div>)
+      throw err = 0
     }
     try {
       const response = await axios
@@ -64,21 +40,24 @@ function Login_Main() {
           if (response.status === 200) {
             redirecionar();
             setUser(response.data)
-
           } else if (response.status === 404) {
-            throw err = 2
-          } else if (response.status != 200 && response.status != 404) {
+            // openModal()
             throw err = 1
+          } else if (response.status != 200 && response.status != 404) {
+            // openModal()
+            throw err = 2
           }
         });
     } catch (err) {
-      if (err == 1) {
-        setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-          <span className="font-medium">Acesso negado!</span> Erro ao acessar o Servidor !
-        </div>)
-      } else if (err == 2) {
-        setError(<div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-          <span className="font-medium">Acesso negado!</span> Credenciais Inválidas! </div>)
+      openModal()
+      if(err === 0){
+        setError(`<><span className="font-medium">Acesso Negado! Campos não preenchidos</span></>`)
+      }
+      if(err == 1){
+        setError(`<><span className="font-medium">Acesso Negado! Credenciais Inválidas</span></>`)
+      }
+      if (err === 2){
+        setError(`<><span className="font-medium">Erro ao Acessar o Servidor</span></>`)
       }
     }
   };
@@ -155,30 +134,50 @@ function Login_Main() {
                   {" "}
                   Entrar{" "}
                 </button>
-                <p>{error}</p>
-                <p className="text-sm font-light text-black dark:text-gray-400">
-                  Não possui uma conta?{" "}
-                  <a
-                    href="signup"
-                    className="font-medium hover:underline dark:text-primary-500 text-purple-500 hover:text-purple-600"
-                  >
-                    Cadastre-se Aqui
-                  </a>
-                  <br />
-                  Esqueceu sua senha?{" "}
-                  <a
-                    href="recovery"
-                    className="font-medium hover:underline dark:text-primary-500 text-purple-500 hover:text-purple-600"
-                  >
-                    Redefine ela aqui
-                  </a>
-                </p>
-              </form>
-            </div>
-          </div>
+
+                {error && (
+                  
+                  <div className="p-4 sm:ml-64">
+                  <div className="p-4 border-2 border-purple-400 border-solid rounded-lg dark:border-gray-700 bg-purple-300">
+                      <div className="">
+                          <div
+                              className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                              role="alert"
+                          >
+                              <span className="font-medium">{error}</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+                
+              
+              )
+            }
+
+
+              <p className="text-sm font-light text-black dark:text-gray-400">
+              Não possui uma conta?
+              <a
+                href="signup"
+                className="font-medium hover:underline dark:text-primary-500 text-purple-500 hover:text-purple-600"
+              >
+                Cadastre-se Aqui
+              </a>
+              <br />
+              Esqueceu sua senha?{" "}
+              <a
+                href="recovery"
+                className="font-medium hover:underline dark:text-primary-500 text-purple-500 hover:text-purple-600"
+              >
+                Redefine ela aqui
+              </a>
+            </p>
+          </form>
         </div>
-      </section>
     </div>
+        </div >
+      </section >
+    </div >
   );
 }
 export default Login_Main;
