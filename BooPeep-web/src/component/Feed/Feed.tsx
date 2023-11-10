@@ -20,8 +20,8 @@ interface Post {
 }
 interface User {
     // id: Number,
-    name: String,
-    phone: Number,
+    name: string,
+    phone: number,
     //course: String,
 }
 
@@ -32,10 +32,10 @@ const Feed: React.FC = () => {
     const [user, setUser] = useState<User[]>([])
     const [newPost, setNewpost] = useState<{
         // situation: Number;
-        description: String;
-        image: String;
-        contato: String;
-        coment: String;
+        description: string;
+        image: string;
+        contato: string;
+        coment: string;
     }>({
         // situation: 0,
         description: '',
